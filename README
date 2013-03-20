@@ -9,3 +9,30 @@ At the moment it displays the timestamp in the db
 and the timestamp parsed in the Makefile, for debug
 purposes.
 
+Edit makefile if you dont put stuff in /usr/local
+
+example:
+# chucky
+
+ {OK}		p:1359956798 i:1363325950       x11/xpr 1.0.4
+ {OK}		p:1342304958 i:1363325954       x11/xprop 1.2.1
+ {beta}		p:---------- i:1363045617       x11/xproto 7.0.22
+ {OK}		p:1362771552 i:1363325959       x11/xrandr 1.4.0
+ {updates}	p:1366304958 i:1363325962       x11/xrdb 1.0.9
+
+{OK} means there is no update available
+{beta} is a beta port
+{updates} means the version in /usr/ports is newer than install date
+
+the right columns show the port location, ie /usr/ports/x11/xrdb
+and the version currently installed on the system.
+
+depends on /var/db/pkg/local.sqlite which is managed by the pkg system.
+(see /usr/ports/ports-mgmt/pkg)
+
+contact me if you have Questions.
+Waitman Gobble
+San Jose California USA
+(510) 830 7975
+ns@waitman.net
+
