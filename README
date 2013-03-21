@@ -1,15 +1,33 @@
-Copyright 2013 Waitman Gobble <ns@waitman.net>
-see COPYING for details
-Usage: chucky
-This program reads /var/db/pkg/local.sqlite and compares
-install timestamp with date in $FreeBSD header in the
-Makefile of the port. If there is no $FreeBSD header
-then it is assumed to be a beta port.
-At the moment it displays the timestamp in the db
-and the timestamp parsed in the Makefile, for debug
-purposes.
+chucky
 
-Edit makefile if you dont put stuff in /usr/local
+Copyright 2013 Waitman Gobble <ns@waitman.net>
+
+see COPYING for details
+
+
+This program reads /var/db/pkg/local.sqlite and compares install timestamp with
+date in $FreeBSD header in the Makefile of the port. If there is no $FreeBSD
+header then it is assumed to be a beta port.
+
+ Command line switches:
+                -u      show ports with update status only
+                -o      show ports with current status only
+                -b      show ports with beta status only
+                -t      show timestamps (debug, etc)
+                -a      create shar of files (usefull with -a). output to stdout
+                -h      help
+
+NOTE: shar files are created with absolute path (ie /usr/ports/src/dir)
+so executing them will restore to that path. Multiple shars are concatenated
+by chucky stripping the 'exit' command from the output. (ie there is no 'exit'
+in the shar output. the shar output is to stdout, if you want to save:
+
+# chucky -b -a > save.shar
+
+This will save all the ports marked 'beta' in the save.shar archive,
+in the cwd.
+
+Edit Makefile if you dont put stuff in /usr/local
 
 example:
 # chucky
@@ -29,6 +47,13 @@ and the version currently installed on the system.
 
 depends on /var/db/pkg/local.sqlite which is managed by the pkg system.
 (see /usr/ports/ports-mgmt/pkg)
+
+man page is installed in /usr/local/share/man/man7, if you do not yet 
+have the configuration in /etc/man.conf, add 
+
+MANPATH /usr/local/share/man
+
+to view man pages installed in /usr/local/share/man/manX/
 
 contact me if you have Questions.
 Waitman Gobble

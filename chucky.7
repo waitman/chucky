@@ -1,0 +1,60 @@
+..
+.
+.
+.TH chucky 7 "21 March 2013" "chucky version 1.0"
+.
+.
+.
+.SH NAME
+.
+.B chucky
+.
+.SH SYNOPSIS
+.
+
+chucky
+
+chucky -b -o -u -t
+
+chucky -b -a > save.shar
+
+.
+.SH DESCRIPTION
+
+This program reads /var/db/pkg/local.sqlite and compares install timestamp with
+date in $FreeBSD header in the Makefile of the port. If there is no $FreeBSD
+header then it is assumed to be a beta port.
+
+NOTE: shar files are created with absolute path (ie /usr/ports/src/dir)
+so executing them will restore to that path. Multiple shars are concatenated
+by chucky stripping the 'exit' command from the output. (ie there is no 'exit'
+in the shar output. the shar output is to stdout, if you want to save:
+
+# chucky -b -a > save.shar
+
+This will save all the ports marked 'beta' in the save.shar archive,
+in the cwd.
+
+.
+.SH OPTIONS
+.IP -u
+Display installed ports with update status only.
+.IP -o
+Display installed ports with current status only
+.IP -b
+Display installed ports with beta status only
+.IP -t
+Include timestamps in display (debug, etc)
+.IP -a
+Create shar of files (useful with -b). (Output to stdout).
+.IP -h
+Display help text.
+.SH FILES
+
+Chucky uses /var/db/pkg/local.sqlite which is created/managed by /usr/ports/ports-mgmt/pkg.
+
+.
+.
+.SH AUTHOR
+.
+Manual page by Waitman Gobble
