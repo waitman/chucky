@@ -1,5 +1,5 @@
 prefix=/usr/local
-man7dir=/usr/local/share/man/man7
+man7dir=/usr/local/man/man7
 CC=clang
 CFLAGS=-I/usr/local/include
 LDFLAGS=-L/usr/local/lib -lsqlite3
@@ -7,7 +7,7 @@ LDFLAGS=-L/usr/local/lib -lsqlite3
 all: chucky
 
 chucky:
-	${CC} -std=c99 -O3 -Wall -Werror ${CFLAGS} ${LDFLAGS} -o chucky chucky.c
+	${CC} -std=c99 -O2 -Wall -Werror ${CFLAGS} ${LDFLAGS} -o chucky chucky.c
 clean:
 	rm chucky
 
