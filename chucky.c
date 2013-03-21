@@ -2,7 +2,7 @@
 chucky.c
 
 Copyright 2013 Waitman Gobble <ns@waitman.net> 
-see COPYING for details 
+see LICENSE for details 
 
 Usage: chucky
 This program reads /var/db/pkg/local.sqlite and compares

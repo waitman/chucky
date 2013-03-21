@@ -2,7 +2,7 @@ chucky
 
 Copyright 2013 Waitman Gobble <ns@waitman.net>
 
-see COPYING for details
+see LICENSE for details
 
 
 This program reads /var/db/pkg/local.sqlite and compares install timestamp with
