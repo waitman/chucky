@@ -61,10 +61,15 @@ static int callback(void *NotUsed, int argc, char **argv, char **coln) {
 	sprintf(fn,"/usr/ports/%s/Makefile",argv[0]);
 
 	/* Read beginning of file, just need $FreeBSD line */
-	buffer = malloc(FULLSIZE+1);
-	FILE *file = fopen(fn,"r");
-	fread(buffer,1,FULLSIZE,file);
-	fclose(file);
+	buffer = malloc(sizeof(char)*(FULLSIZE+1));
+	FILE *file;
+	if ((file = fopen(fn,"r"))) {
+		fread(buffer,1,FULLSIZE,file);
+		fclose(file);
+	} else {
+		printf("Error - could not read %s\n",fn);
+		exit(1);
+	}
 
 	/* beta ports */
 	/* beta = ports installed over top of your ports installation,
