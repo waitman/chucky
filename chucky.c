@@ -16,6 +16,7 @@ Command line switches:
 	-b	show ports with beta status only
 	-t	show timestamps (debug, etc.)
 	-a	create shar of files (usefull with -b)
+	-i	ignore fread errors*
 	-h	help
 
 NOTE: shar files are created with absolute path (ie /usr/ports/src/dir) 
@@ -28,6 +29,11 @@ in the shar output. the shar output is to stdout, if you want to save:
 This will save all the ports marked 'beta' in the save.shar archive, in the 
 cwd.
 
+*ignore fread errors: if you are working on developing ports outside the 
+ports tree you may receive an error because the port is listed in the database
+but it does not exist in the ports tree. if you use the -i flag it will continue
+without an error message.
+
 */
 #include <stdio.h>
 #include <sqlite3.h>
@@ -39,7 +45,7 @@ cwd.
 
 #define FULLSIZE 300
 
-int showbeta,showok,showupdates,showtimestamps,makeshar;
+int showbeta,showok,showupdates,showtimestamps,makeshar,ignoreerrors;
 
 static int callback(void *NotUsed, int argc, char **argv, char **coln) {
 
@@ -67,8 +73,12 @@ static int callback(void *NotUsed, int argc, char **argv, char **coln) {
 		fread(buffer,1,FULLSIZE,file);
 		fclose(file);
 	} else {
-		printf("Error - could not read %s\n",fn);
-		exit(1);
+		if (ignoreerrors>0) {
+			return(0);
+		} else {
+			printf("Error - could not read %s\n",fn);
+			exit(1);
+		}
 	}
 
 	/* beta ports */
@@ -207,8 +217,9 @@ int main(int argc, char **argv){
 	showok = 0;
 	showtimestamps = 0;
 	makeshar = 0;
+	ignoreerrors = 0;
 
-	while ((c = getopt (argc, argv, "buohta")) != -1) {
+	while ((c = getopt (argc, argv, "buohtai")) != -1) {
 		switch (c) {
 			case 'b':    /* show beta */
 				showbeta = 1;
@@ -227,6 +238,9 @@ int main(int argc, char **argv){
 				break;
 			case 'a':    /* dump shar archive to stdout */
 				makeshar = 1;
+				break;
+			case 'i':    /* ignore fread() errors */
+				ignoreerrors = 1;
 				break;
                         default:     /* no switches */
                                 break;

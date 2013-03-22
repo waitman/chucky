@@ -49,6 +49,15 @@ Include timestamps in display (debug, etc)
 Create shar of files (useful with -b). (Output to stdout).
 .IP -h
 Display help text.
+.IP -i
+Ignore fread() errors.
+
+** if you are working on developing ports outside the 
+ports tree you may receive an error because the port is 
+listed in the database but does not exist in the ports
+tree. if you use the -i flag it will continue without an
+error message.
+
 .SH FILES
 
 Chucky uses /var/db/pkg/local.sqlite which is created/managed by /usr/ports/ports-mgmt/pkg.

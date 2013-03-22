@@ -16,6 +16,7 @@ header then it is assumed to be a beta port.
                 -t      show timestamps (debug, etc)
                 -a      create shar of files (usefull with -a). output to stdout
                 -h      help
+		-i	ignore fread() errors*
 
 NOTE: shar files are created with absolute path (ie /usr/ports/src/dir)
 so executing them will restore to that path. Multiple shars are concatenated
@@ -47,6 +48,12 @@ and the version currently installed on the system.
 
 depends on /var/db/pkg/local.sqlite which is managed by the pkg system.
 (see /usr/ports/ports-mgmt/pkg)
+
+*ignore fread errors: if you are working on developing ports outside the
+ports tree you may receive an error because the port is listed in the database
+but it does not exist in the ports tree. if you use the -i flag it will continue
+without an error message.
+
 
 contact me if you have Questions.
 Waitman Gobble
