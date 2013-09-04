@@ -15,7 +15,7 @@ Command line switches:
 	-o	show ports with current status only
 	-b	show ports with beta status only
 	-t	show timestamps (debug, etc.)
-	-a	create shar of files (usefull with -b)
+	-a	create shar of files (useful with -b)
 	-i	ignore fread errors*
 	-h	help
 
@@ -190,7 +190,7 @@ Command line switches: \n\
 \t\t-o\tshow ports with current status only \n\
 \t\t-b\tshow ports with beta status only \n\
 \t\t-t\tshow timestamps (debug, etc)\n\
-\t\t-a\tcreate shar of files (usefull with -a). output to stdout\n\
+\t\t-a\tcreate shar of files (useful with -b). output to stdout\n\
 \t\t-h\thelp \n\n\
 NOTE: shar files are created with absolute path (ie /usr/ports/src/dir)\n\
 so executing them will restore to that path. Multiple shars are concatenated\n\

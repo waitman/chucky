@@ -1,15 +1,15 @@
-prefix=/usr/local
-man7dir=/usr/local/man/man7
-CC=clang
-CFLAGS=-I/usr/local/include
-LDFLAGS=-L/usr/local/lib -lsqlite3
+PREFIX?=	/usr/local
+man7dir?=	/usr/local/man/man7
+CC?=		clang
+CFLAGS=		-I/usr/local/include
+LDFLAGS=	-L/usr/local/lib -lsqlite3
 
 all: chucky
 
 chucky:
 	${CC} -std=c99 -O2 -Wall -Werror ${CFLAGS} ${LDFLAGS} -o chucky chucky.c
 clean:
-	rm chucky
+	rm -f chucky
 
 install:
 	install -m 0755 -g wheel -o root chucky ${prefix}/bin

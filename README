@@ -14,7 +14,7 @@ header then it is assumed to be a beta port.
                 -o      show ports with current status only
                 -b      show ports with beta status only
                 -t      show timestamps (debug, etc)
-                -a      create shar of files (usefull with -a). output to stdout
+                -a      create shar of files (usefull with -b). output to stdout
                 -h      help
 		-i	ignore fread() errors*
 
